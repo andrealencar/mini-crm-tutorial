@@ -8,6 +8,6 @@ export default {
     out: './drizzle',
     dialect: 'sqlite',
     dbCredentials: {
-        url: process.env.DATABASE_URL || 'file:sqlite.db',
+        url: `${process.env.DATABASE_URL}?authToken=${process.env.DATABASE_AUTH_TOKEN}`,
     },
 } satisfies Config;
