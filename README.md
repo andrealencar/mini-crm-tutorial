@@ -77,6 +77,19 @@ This project uses **Drizzle ORM**.
   npx drizzle-kit studio
   ```
 
+### Alternative: Using Supabase (Optional)
+
+This project defaults to **SQLite/Turso**. If you prefer to use **Supabase (PostgreSQL)**, you must refactor the database layer:
+
+1.  **Environment Variables**:
+    - Add your Supabase `DATABASE_URL` (connection string) to `.env.local`.
+2.  **Code Changes Required**:
+    - **Install Driver**: `npm install postgres` (or `pg`) and uninstall `@libsql/client`.
+    - **Schema**: Rewrite `lib/db/schema.ts` to use `pg-core` (e.g., `pgTable`) instead of `sqlite-core`.
+    - **Connection**: Update `lib/db/index.ts` to use the postgres driver.
+    - **Config**: Update `drizzle.config.ts` to set `dialect: 'postgresql'`.
+
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
